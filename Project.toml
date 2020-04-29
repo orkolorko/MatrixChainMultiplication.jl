@@ -1,0 +1,4 @@
+name = "MatrixChainMultiplication"
+uuid = "c3a50e95-00cd-4799-be3d-dba4ac1a03cf"
+authors = ["Isaia Nisoli <nisoli@im.ufrj.br>"]
+version = "0.1.0"
