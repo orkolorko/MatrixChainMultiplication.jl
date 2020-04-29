@@ -56,3 +56,35 @@ function ChingHuShing(Pol::WeightedPolygon)
     end
     return S
 end
+
+
+#### This function is used to get potential h-segments in the optimal algorithm
+### WIP
+function one_sweep(Pol::WeightedPolygon)
+    VertexStack = Vector{WeightedVertex}()
+    S = Set{WeightedSide}()
+    Pol = sort!(Pol)
+    for Vₙ in Pol #V_c in the article
+        if length(VertexStack) <2
+            push!(VertexStack, Vₙ)
+        elseif length(VertexStack) >= 2
+            Vₜ = VertexStack[end]
+            Vₘ = VertexStack[end-1] # V_{t-1} in the article
+            if (Vₙ[1]<Vₜ[1]) #w_t>w_c
+                push!(S, (Vₙ, Vₘ) )
+                pop!(VertexStack)
+            else
+                push!(VertexStack, Vₙ)
+            end
+        end
+        println(VertexStack)
+    end
+    
+    V₁=Pol[1]
+    while length(VertexStack)>3 
+        Vₘ = VertexStack[end-1] # V_{t-1} in the article
+        push!(S, (V₁, Vₘ) )
+        pop!(VertexStack)
+    end
+    return S
+end      
